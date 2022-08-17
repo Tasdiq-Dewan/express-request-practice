@@ -1,19 +1,18 @@
 const express = require("express");
 const app = express();
-const routes = require("./routes/routes");
+const parser = require("body-parser");
+//const routes = require("./routes/routes");
 
 
 
 function logRequest(req, res, next){
-    console.log(req.Date);
+    console.log(req.baseUrl);
     next();
 }
-
-app.use("router", logRequest, routes);
-
+app.use(parser.json());
 app.use(logRequest);
-
-app.use(express.json());
+app.use("/demo", logRequest, require("./routes/demoRoutes.js"));
+app.use("/mongoAPI", logRequest, require("./routes/mongoAPI.js"));
 
 app.use((err, req, res, next) => {
     console.log("error");
@@ -22,4 +21,4 @@ app.use((err, req, res, next) => {
 });
 
 
-app.listen(8090);
+app.listen(8093);
