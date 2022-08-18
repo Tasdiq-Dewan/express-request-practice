@@ -128,4 +128,10 @@ router.put("/addReview/:title", (req, res) => {
     .catch(err => {console.log(err)});
 });
 
+router.put("/addActor/:title", (req, res) => {
+    movieModel.updateOne({title: req.params.title}, {"$push": {actors: req.body}})
+    .then((updated) => res.send(JSON.stringify(updated)))
+    .catch(err => {console.log(err)});
+});
+
 module.exports = router;
