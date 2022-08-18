@@ -12,7 +12,7 @@ function logRequest(req, res, next){
 app.use(parser.json());
 app.use(logRequest);
 app.use("/demo", logRequest, require("./routes/demoRoutes.js"));
-app.use("/mongoAPI", logRequest, require("./routes/mongoAPI.js"));
+app.use("/mongoAPI", logRequest, require("./routes/movieAPI.js"));
 
 app.use((err, req, res, next) => {
     console.log("error");
